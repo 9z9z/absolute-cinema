@@ -58,6 +58,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      cursor: pointer;
     }
     
     .logo i {
@@ -199,6 +200,7 @@
       padding: 2rem;
       max-width: 1600px;
       margin: 0 auto;
+      min-height: 70vh;
     }
     
     .hero {
@@ -364,6 +366,7 @@
       height: 100%;
       border: 1px solid rgba(255, 255, 255, 0.05);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
     }
     
     .movie-card:hover {
@@ -522,6 +525,243 @@
     
     .search-btn:hover {
       transform: translateY(-50%) scale(1.05);
+    }
+    
+    /* صفحة التفاصيل */
+    .detail-page {
+      display: none;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .back-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .detail-container {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    .detail-poster {
+      width: 350px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+    }
+    
+    .detail-info {
+      flex: 1;
+    }
+    
+    .detail-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--light);
+      font-weight: 800;
+    }
+    
+    .detail-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .detail-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: gold;
+      font-size: 1.2rem;
+    }
+    
+    .detail-year {
+      background: rgba(229, 9, 20, 0.2);
+      color: var(--primary);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-weight: 500;
+    }
+    
+    .detail-genres {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    
+    .genre {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+    }
+    
+    .detail-overview {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+    }
+    
+    .detail-actions {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .detail-btn {
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .detail-play-btn {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.5);
+    }
+    
+    .detail-play-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(229, 9, 20, 0.7);
+    }
+    
+    .detail-fav-btn {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      color: var(--light);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .detail-fav-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    
+    .seasons-section {
+      margin-top: 3rem;
+    }
+    
+    .seasons-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .season-card {
+      background: rgba(28, 28, 28, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .season-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    .season-poster {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    
+    .season-info {
+      padding: 1rem;
+    }
+    
+    .season-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--light);
+    }
+    
+    .season-episodes {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    /* صفحة المشاهدة */
+    .watch-page {
+      display: none;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .player-container {
+      width: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      margin-bottom: 2rem;
+      background: #000;
+    }
+    
+    .video-player {
+      width: 100%;
+      height: 600px;
+      background: #000;
+    }
+    
+    .player-controls {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      background: rgba(28, 28, 28, 0.9);
+    }
+    
+    .episode-selector {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    
+    .episode-btn {
+      background: rgba(28, 28, 28, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .episode-btn:hover, .episode-btn.active {
+      background: var(--gradient);
+      color: white;
+      border-color: transparent;
     }
     
     /* تذييل الصفحة */
@@ -687,6 +927,20 @@
       .hero-title {
         font-size: 2.5rem;
       }
+      
+      .detail-container {
+        flex-direction: column;
+      }
+      
+      .detail-poster {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      
+      .video-player {
+        height: 400px;
+      }
     }
     
     @media (max-width: 768px) {
@@ -711,6 +965,19 @@
         overflow-x: auto;
         padding: 0.8rem;
       }
+      
+      .detail-title {
+        font-size: 2rem;
+      }
+      
+      .detail-actions {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .video-player {
+        height: 300px;
+      }
     }
   </style>
 </head>
@@ -718,45 +985,37 @@
 <body>
   <!-- شريط التنقل -->
   <nav class="navbar">
-    <div class="logo">
+    <div class="logo" onclick="showPage('home')">
       <i class="fas fa-film"></i>
       <h1>سينما بوكس</h1>
     </div>
     
     <ul class="nav-links">
-      <li><a href="#" class="nav-link active"><span class="dot"></span> الرئيسية</a></li>
+      <li><a href="#" class="nav-link active" onclick="showPage('home')"><span class="dot"></span> الرئيسية</a></li>
       
       <li class="dropdown">
         <a href="#">الأفلام ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="#">الأكثر مشاهدة</a></li>
-          <li><a href="#">الأعلى تقييماً</a></li>
-          <li><a href="#">أفلام أكشن</a></li>
-          <li><a href="#">أفلام رعب</a></li>
-          <li><a href="#">أفلام رومانسية</a></li>
-          <li><a href="#">أفلام كوميدية</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'popular')">الأكثر مشاهدة</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'top_rated')">الأعلى تقييماً</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'upcoming')">قريباً</a></li>
         </ul>
       </li>
       
       <li class="dropdown">
         <a href="#">المسلسلات ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="#">مسلسلات جديدة</a></li>
-          <li><a href="#">مسلسلات عربية</a></li>
-          <li><a href="#">مسلسلات تركية</a></li>
-          <li><a href="#">مسلسلات كورية</a></li>
-          <li><a href="#">المسلسلات الأكثر متابعة</a></li>
+          <li><a href="#" onclick="filterContent('tv', 'popular')">مسلسلات جديدة</a></li>
+          <li><a href="#" onclick="filterContent('tv', 'top_rated')">الأعلى تقييماً</a></li>
+          <li><a href="#" onclick="filterContent('tv', 'on_the_air')">يعرض حالياً</a></li>
         </ul>
       </li>
       
       <li class="dropdown">
         <a href="#">الأنمي ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="#">أنمي جديد</a></li>
-          <li><a href="#">أنمي أكشن</a></li>
-          <li><a href="#">أنمي رومانسي</a></li>
-          <li><a href="#">أنمي خيال علمي</a></li>
-          <li><a href="#">أفضل الأنمي تقييماً</a></li>
+          <li><a href="#" onclick="filterContent('anime', 'popular')">أنمي جديد</a></li>
+          <li><a href="#" onclick="filterContent('anime', 'top_rated')">أفضل الأنمي</a></li>
         </ul>
       </li>
     </ul>
@@ -766,40 +1025,41 @@
     </div>
   </nav>
   
-  <!-- البطل الرئيسي -->
-  <div class="hero">
-    <img src="https://image.tmdb.org/t/p/original/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg" alt="فلم Spider-Man: Across the Spider-Verse">
-    <div class="hero-content">
-      <h1 class="hero-title">Spider-Man: Across the Spider-Verse</h1>
-      <div class="hero-meta">
-        <div class="hero-rating">
-          <i class="fas fa-star"></i>
-          <span>8.7/10</span>
+  <!-- الصفحة الرئيسية -->
+  <div id="home-page" class="content">
+    <!-- البطل الرئيسي -->
+    <div class="hero">
+      <img src="https://image.tmdb.org/t/p/original/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg" alt="فلم Spider-Man: Across the Spider-Verse">
+      <div class="hero-content">
+        <h1 class="hero-title">Spider-Man: Across the Spider-Verse</h1>
+        <div class="hero-meta">
+          <div class="hero-rating">
+            <i class="fas fa-star"></i>
+            <span>8.7/10</span>
+          </div>
+          <div>2023</div>
+          <div>140 دقيقة</div>
+          <div>أكشن, مغامرة, رسوم متحركة</div>
         </div>
-        <div>2023</div>
-        <div>140 دقيقة</div>
-        <div>أكشن, مغامرة, رسوم متحركة</div>
-      </div>
-      <div class="hero-buttons">
-        <button class="hero-btn play-btn"><i class="fas fa-play"></i> شاهد الآن</button>
-        <button class="hero-btn info-btn"><i class="fas fa-info-circle"></i> تفاصيل</button>
+        <div class="hero-buttons">
+          <button class="hero-btn play-btn" onclick="showWatchPage(315162)"><i class="fas fa-play"></i> شاهد الآن</button>
+          <button class="hero-btn info-btn" onclick="showDetailPage('movie', 315162)"><i class="fas fa-info-circle"></i> تفاصيل</button>
+        </div>
       </div>
     </div>
-  </div>
-  
-  <!-- محتوى الصفحة -->
-  <div class="content">
+    
+    <!-- محتوى الصفحة -->
     <div class="search-container">
       <input type="text" id="searchBox" placeholder="ابحث عن فلم، مسلسل، أنمي...">
-      <button class="search-btn"><i class="fas fa-search"></i></button>
+      <button class="search-btn" onclick="searchContent()"><i class="fas fa-search"></i></button>
     </div>
     
     <div class="category-tabs">
-      <button class="category-btn active">الأفلام</button>
-      <button class="category-btn">المسلسلات</button>
-      <button class="category-btn">الأنمي</button>
-      <button class="category-btn">سلاسل الأفلام</button>
-      <button class="category-btn">الأكثر مشاهدة</button>
+      <button class="category-btn active" onclick="filterContent('all', 'popular')">الكل</button>
+      <button class="category-btn" onclick="filterContent('movie', 'popular')">الأفلام</button>
+      <button class="category-btn" onclick="filterContent('tv', 'popular')">المسلسلات</button>
+      <button class="category-btn" onclick="filterContent('anime', 'popular')">الأنمي</button>
+      <button class="category-btn" onclick="filterContent('all', 'top_rated')">الأعلى تقييماً</button>
     </div>
     
     <!-- قسم الأفلام -->
@@ -809,7 +1069,7 @@
           <i class="fas fa-film"></i>
           الأفلام الشعبية
         </h2>
-        <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="view-all" onclick="filterContent('movie', 'popular')">عرض الكل <i class="fas fa-arrow-left"></i></a>
       </div>
       
       <div class="grid-container" id="movies-container">
@@ -824,7 +1084,7 @@
           <i class="fas fa-tv"></i>
           المسلسلات الحصرية
         </h2>
-        <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="view-all" onclick="filterContent('tv', 'popular')">عرض الكل <i class="fas fa-arrow-left"></i></a>
       </div>
       
       <div class="grid-container" id="series-container">
@@ -839,7 +1099,7 @@
           <i class="fas fa-dragon"></i>
           أفضل الأنمي
         </h2>
-        <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="view-all" onclick="filterContent('anime', 'popular')">عرض الكل <i class="fas fa-arrow-left"></i></a>
       </div>
       
       <div class="grid-container" id="anime-container">
@@ -860,6 +1120,80 @@
       <div class="grid-container" id="collections-container">
         <!-- سيتم ملؤها بواسطة الجافاسكريبت -->
       </div>
+    </div>
+  </div>
+  
+  <!-- صفحة التفاصيل -->
+  <div id="detail-page" class="detail-page">
+    <button class="back-btn" onclick="showPage('home')">
+      <i class="fas fa-arrow-left"></i> العودة
+    </button>
+    
+    <div class="detail-container">
+      <img src="" alt="ملصق الفلم" class="detail-poster" id="detail-poster">
+      
+      <div class="detail-info">
+        <h1 class="detail-title" id="detail-title">عنوان الفلم</h1>
+        
+        <div class="detail-meta">
+          <div class="detail-rating">
+            <i class="fas fa-star"></i>
+            <span id="detail-rating">0.0</span>/10
+          </div>
+          <div id="detail-date">تاريخ الإصدار</div>
+          <div id="detail-duration">مدة الفلم</div>
+          <div class="detail-year" id="detail-year">2023</div>
+        </div>
+        
+        <div class="detail-genres" id="detail-genres">
+          <!-- سيتم ملؤها بالأنواع -->
+        </div>
+        
+        <div class="detail-overview">
+          <h3>القصة</h3>
+          <p id="detail-overview">وصف الفلم سيظهر هنا...</p>
+        </div>
+        
+        <div class="detail-actions">
+          <button class="detail-btn detail-play-btn" id="watch-btn">
+            <i class="fas fa-play"></i> مشاهدة
+          </button>
+          <button class="detail-btn detail-fav-btn">
+            <i class="far fa-heart"></i> المفضلة
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="seasons-section" id="seasons-section" style="display: none;">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i>
+        المواسم والحلقات
+      </h2>
+      
+      <div class="seasons-container" id="seasons-container">
+        <!-- سيتم ملؤها بالمواسم -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- صفحة المشاهدة -->
+  <div id="watch-page" class="watch-page">
+    <button class="back-btn" onclick="showPage('detail')">
+      <i class="fas fa-arrow-left"></i> العودة
+    </button>
+    
+    <div class="player-container">
+      <div class="video-player" id="video-player">
+        <iframe width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="player-controls">
+        <h3 id="watch-title">عنوان الفلم/الحلقة</h3>
+      </div>
+    </div>
+    
+    <div class="episode-selector" id="episode-selector">
+      <!-- سيتم ملؤها بالحلقات -->
     </div>
   </div>
   
@@ -884,11 +1218,10 @@
       <div class="footer-links">
         <h3>روابط سريعة</h3>
         <ul>
-          <li><a href="#"><i class="fas fa-angle-left"></i> الرئيسية</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> الأفلام</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> المسلسلات</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> الأنمي</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> سلاسل الأفلام</a></li>
+          <li><a href="#" onclick="showPage('home')"><i class="fas fa-angle-left"></i> الرئيسية</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'popular')"><i class="fas fa-angle-left"></i> الأفلام</a></li>
+          <li><a href="#" onclick="filterContent('tv', 'popular')"><i class="fas fa-angle-left"></i> المسلسلات</a></li>
+          <li><a href="#" onclick="filterContent('anime', 'popular')"><i class="fas fa-angle-left"></i> الأنمي</a></li>
           <li><a href="#"><i class="fas fa-angle-left"></i> اتصل بنا</a></li>
         </ul>
       </div>
@@ -896,12 +1229,12 @@
       <div class="footer-links">
         <h3>الفئات</h3>
         <ul>
-          <li><a href="#"><i class="fas fa-angle-left"></i> أكشن</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> مغامرة</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> كوميديا</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> دراما</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> رعب</a></li>
-          <li><a href="#"><i class="fas fa-angle-left"></i> خيال علمي</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'action')"><i class="fas fa-angle-left"></i> أكشن</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'adventure')"><i class="fas fa-angle-left"></i> مغامرة</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'comedy')"><i class="fas fa-angle-left"></i> كوميديا</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'drama')"><i class="fas fa-angle-left"></i> دراما</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'horror')"><i class="fas fa-angle-left"></i> رعب</a></li>
+          <li><a href="#" onclick="filterContent('movie', 'scifi')"><i class="fas fa-angle-left"></i> خيال علمي</a></li>
         </ul>
       </div>
     </div>
@@ -916,19 +1249,31 @@
     const apiKey = '6b2dec73b6697866a50cdaef60ccffcb';
     
     // عناصر DOM
-    const moviesContainer = document.getElementById('movies-container');
-    const seriesContainer = document.getElementById('series-container');
-    const animeContainer = document.getElementById('anime-container');
-    const collectionsContainer = document.getElementById('collections-container');
+    const homePage = document.getElementById('home-page');
+    const detailPage = document.getElementById('detail-page');
+    const watchPage = document.getElementById('watch-page');
+    
+    // بيانات محتوى الموقع
+    const contentData = {
+      movies: [],
+      series: [],
+      anime: [],
+      collections: []
+    };
     
     // روابط API
     const endpoints = {
       popularMovies: `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=ar-SA&page=1`,
       topRatedMovies: `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ar-SA&page=1`,
+      upcomingMovies: `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=ar-SA&page=1`,
       popularSeries: `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=ar-SA&page=1`,
       topRatedSeries: `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=ar-SA&page=1`,
+      onTheAirSeries: `https://api.themoviedb.org/3/tv/on_the_air?api_key=${apiKey}&language=ar-SA&page=1`,
       anime: `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&language=ar-SA&with_genres=16&sort_by=popularity.desc&page=1`,
-      collections: `https://api.themoviedb.org/3/collection/popular?api_key=${apiKey}&language=ar-SA&page=1`
+      collections: `https://api.themoviedb.org/3/collection/popular?api_key=${apiKey}&language=ar-SA&page=1`,
+      movieDetail: (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=ar-SA`,
+      seriesDetail: (id) => `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=ar-SA`,
+      seriesSeasons: (id) => `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=ar-SA&append_to_response=seasons`
     };
     
     // دالة لجلب البيانات وعرضها
@@ -944,6 +1289,12 @@
         const data = await response.json();
         
         container.innerHTML = '';
+        
+        // حفظ البيانات للمحتوى
+        if (type === 'movie') contentData.movies = data.results;
+        else if (type === 'tv') contentData.series = data.results;
+        else if (type === 'anime') contentData.anime = data.results;
+        else if (type === 'collection') contentData.collections = data.results;
         
         data.results.slice(0, 10).forEach(item => {
           const card = document.createElement('div');
@@ -966,6 +1317,9 @@
                 <i class="far fa-heart"></i>
               </button>
             `;
+            
+            // حدث النقر على البطاقة
+            card.addEventListener('click', () => showDetailPage('tv', item.id));
           } 
           // معالجة السلاسل بشكل مختلف
           else if (type === 'collection') {
@@ -1001,6 +1355,9 @@
                 <i class="far fa-heart"></i>
               </button>
             `;
+            
+            // حدث النقر على البطاقة
+            card.addEventListener('click', () => showDetailPage('tv', item.id));
           } 
           // معالجة الأفلام
           else {
@@ -1019,6 +1376,9 @@
                 <i class="far fa-heart"></i>
               </button>
             `;
+            
+            // حدث النقر على البطاقة
+            card.addEventListener('click', () => showDetailPage('movie', item.id));
           }
           
           // حدث النقر على زر المفضلة
@@ -1044,12 +1404,196 @@
       }
     }
     
+    // دالة لعرض صفحة التفاصيل
+    async function showDetailPage(type, id) {
+      try {
+        // إظهار صفحة التفاصيل وإخفاء الأخرى
+        showPage('detail');
+        
+        // جلب تفاصيل المحتوى
+        let url = '';
+        if (type === 'movie') {
+          url = endpoints.movieDetail(id);
+        } else if (type === 'tv' || type === 'anime') {
+          url = endpoints.seriesDetail(id);
+        }
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        // ملء بيانات الصفحة
+        document.getElementById('detail-poster').src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+        document.getElementById('detail-title').textContent = type === 'movie' ? data.title : data.name;
+        document.getElementById('detail-rating').textContent = data.vote_average.toFixed(1);
+        document.getElementById('detail-overview').textContent = data.overview || 'لا يوجد وصف متوفر';
+        
+        if (type === 'movie') {
+          document.getElementById('detail-date').textContent = data.release_date;
+          document.getElementById('detail-duration').textContent = `${Math.floor(data.runtime / 60)}h ${data.runtime % 60}m`;
+          document.getElementById('detail-year').textContent = data.release_date.substring(0, 4);
+          document.getElementById('seasons-section').style.display = 'none';
+        } else {
+          document.getElementById('detail-date').textContent = data.first_air_date;
+          document.getElementById('detail-duration').textContent = `${data.number_of_seasons} مواسم`;
+          document.getElementById('detail-year').textContent = data.first_air_date.substring(0, 4);
+          
+          // إظهار قسم المواسم للمسلسلات
+          document.getElementById('seasons-section').style.display = 'block';
+          displaySeasons(data.seasons);
+        }
+        
+        // ملء الأنواع
+        const genresContainer = document.getElementById('detail-genres');
+        genresContainer.innerHTML = '';
+        data.genres.forEach(genre => {
+          const genreEl = document.createElement('div');
+          genreEl.className = 'genre';
+          genreEl.textContent = genre.name;
+          genresContainer.appendChild(genreEl);
+        });
+        
+        // إعداد زر المشاهدة
+        document.getElementById('watch-btn').onclick = () => showWatchPage(id, type);
+      } catch (error) {
+        console.error('Error fetching details:', error);
+        alert('حدث خطأ أثناء جلب التفاصيل. الرجاء المحاولة لاحقاً.');
+      }
+    }
+    
+    // دالة لعرض المواسم
+    function displaySeasons(seasons) {
+      const container = document.getElementById('seasons-container');
+      container.innerHTML = '';
+      
+      seasons.forEach(season => {
+        if (season.season_number === 0) return; // تخطي المواسم الخاصة
+        
+        const seasonCard = document.createElement('div');
+        seasonCard.className = 'season-card';
+        seasonCard.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w500${season.poster_path}" alt="${season.name}" class="season-poster">
+          <div class="season-info">
+            <h3 class="season-title">${season.name}</h3>
+            <div class="season-episodes">${season.episode_count} حلقة</div>
+          </div>
+        `;
+        
+        seasonCard.addEventListener('click', () => {
+          showWatchPage(season.id, 'season');
+        });
+        
+        container.appendChild(seasonCard);
+      });
+    }
+    
+    // دالة لعرض صفحة المشاهدة
+    function showWatchPage(id, type = 'movie') {
+      showPage('watch');
+      
+      // في الواقع، هنا سيتم جلب رابط التشغيل من قاعدة البيانات
+      // لكن لأغراض العرض سنستخدم رابط افتراضي
+      const player = document.querySelector('#video-player iframe');
+      player.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+      
+      // تحديد العنوان
+      let title = '';
+      if (type === 'movie') {
+        const movie = contentData.movies.find(m => m.id === id);
+        title = movie?.title || 'فيلم';
+      } else if (type === 'tv') {
+        const series = contentData.series.find(s => s.id === id);
+        title = series?.name || 'مسلسل';
+      } else if (type === 'season') {
+        title = 'موسم المسلسل';
+      }
+      
+      document.getElementById('watch-title').textContent = title;
+      
+      // إنشاء أزرار الحلقات
+      const episodeContainer = document.getElementById('episode-selector');
+      episodeContainer.innerHTML = '';
+      
+      for (let i = 1; i <= 10; i++) {
+        const episodeBtn = document.createElement('button');
+        episodeBtn.className = 'episode-btn';
+        episodeBtn.textContent = `الحلقة ${i}`;
+        episodeBtn.onclick = () => {
+          document.querySelectorAll('.episode-btn').forEach(btn => btn.classList.remove('active'));
+          episodeBtn.classList.add('active');
+          // هنا سيتم تغيير الحلقة
+        };
+        
+        if (i === 1) episodeBtn.classList.add('active');
+        
+        episodeContainer.appendChild(episodeBtn);
+      }
+    }
+    
+    // دالة للبحث
+    function searchContent() {
+      const query = document.getElementById('searchBox').value.trim();
+      if (query) {
+        alert(`سيتم البحث عن: ${query}`);
+        // في الواقع، هنا سيتم تنفيذ البحث في قاعدة البيانات
+      } else {
+        alert('الرجاء إدخال كلمة البحث');
+      }
+    }
+    
+    // دالة لتصفية المحتوى
+    function filterContent(type, category) {
+      const moviesContainer = document.getElementById('movies-container');
+      const seriesContainer = document.getElementById('series-container');
+      const animeContainer = document.getElementById('anime-container');
+      
+      if (type === 'all') {
+        if (category === 'popular') {
+          fetchData(endpoints.popularMovies, moviesContainer, 'movie');
+          fetchData(endpoints.popularSeries, seriesContainer, 'tv');
+          fetchData(endpoints.anime, animeContainer, 'anime');
+        } else if (category === 'top_rated') {
+          fetchData(endpoints.topRatedMovies, moviesContainer, 'movie');
+          fetchData(endpoints.topRatedSeries, seriesContainer, 'tv');
+        }
+      } else if (type === 'movie') {
+        if (category === 'popular') {
+          fetchData(endpoints.popularMovies, moviesContainer, 'movie');
+        } else if (category === 'top_rated') {
+          fetchData(endpoints.topRatedMovies, moviesContainer, 'movie');
+        } else if (category === 'upcoming') {
+          fetchData(endpoints.upcomingMovies, moviesContainer, 'movie');
+        }
+      } else if (type === 'tv') {
+        if (category === 'popular') {
+          fetchData(endpoints.popularSeries, seriesContainer, 'tv');
+        } else if (category === 'top_rated') {
+          fetchData(endpoints.topRatedSeries, seriesContainer, 'tv');
+        } else if (category === 'on_the_air') {
+          fetchData(endpoints.onTheAirSeries, seriesContainer, 'tv');
+        }
+      } else if (type === 'anime') {
+        fetchData(endpoints.anime, animeContainer, 'anime');
+      }
+    }
+    
+    // دالة للتبديل بين الصفحات
+    function showPage(page) {
+      homePage.style.display = 'none';
+      detailPage.style.display = 'none';
+      watchPage.style.display = 'none';
+      
+      if (page === 'home') homePage.style.display = 'block';
+      else if (page === 'detail') detailPage.style.display = 'block';
+      else if (page === 'watch') watchPage.style.display = 'block';
+    }
+    
     // جلب البيانات عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', function() {
-      fetchData(endpoints.popularMovies, moviesContainer, 'movie');
-      fetchData(endpoints.popularSeries, seriesContainer, 'tv');
-      fetchData(endpoints.anime, animeContainer, 'anime');
-      fetchData(endpoints.collections, collectionsContainer, 'collection');
+      // جلب البيانات الأولية
+      fetchData(endpoints.popularMovies, document.getElementById('movies-container'), 'movie');
+      fetchData(endpoints.popularSeries, document.getElementById('series-container'), 'tv');
+      fetchData(endpoints.anime, document.getElementById('anime-container'), 'anime');
+      fetchData(endpoints.collections, document.getElementById('collections-container'), 'collection');
       
       // أحداث أزرار التبويب
       const categoryBtns = document.querySelectorAll('.category-btn');
@@ -1057,30 +1601,13 @@
         btn.addEventListener('click', function() {
           categoryBtns.forEach(b => b.classList.remove('active'));
           this.classList.add('active');
-          
-          // يمكن إضافة وظائف للتبديل بين الأقسام هنا
         });
       });
       
-      // حدث البحث
-      const searchBtn = document.querySelector('.search-btn');
-      const searchBox = document.getElementById('searchBox');
-      
-      searchBtn.addEventListener('click', function() {
-        const query = searchBox.value.trim();
-        if (query) {
-          alert(`سيتم البحث عن: ${query}`);
-          // يمكن تنفيذ وظيفة البحث هنا
-        }
-      });
-      
-      searchBox.addEventListener('keypress', function(e) {
+      // حدث البحث عند الضغط على Enter
+      document.getElementById('searchBox').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
-          const query = searchBox.value.trim();
-          if (query) {
-            alert(`سيتم البحث عن: ${query}`);
-            // يمكن تنفيذ وظيفة البحث هنا
-          }
+          searchContent();
         }
       });
     });
