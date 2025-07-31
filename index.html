@@ -1,65 +1,1089 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>موقع الأفلام</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <title>سينما بوكس - عالم الأفلام والمسلسلات</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e50914;
+      --secondary: #e53935;
+      --accent: #ff9800;
+      --dark: #121212;
+      --dark-light: #1c1c1c;
+      --darker: #0a0a0a;
+      --gray: #2a2a2a;
+      --light: #ffffff;
+      --text: #e0e0e0;
+      --text-secondary: #aaaaaa;
+      --gradient: linear-gradient(135deg, #e50914 0%, #b81d24 100%);
+      --gradient-dark: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Tajawal', Arial, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      direction: rtl;
+      line-height: 1.6;
+      background: var(--gradient-dark);
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+    
+    /* شريط التنقل */
+    .navbar {
+      background: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(229, 9, 20, 0.3);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo i {
+      font-size: 2rem;
+      color: var(--primary);
+      text-shadow: 0 0 15px rgba(229, 9, 20, 0.7);
+    }
+    
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links li {
+      position: relative;
+    }
+    
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+    
+    .nav-links .active {
+      color: var(--primary);
+    }
+    
+    .nav-links .active::after {
+      width: 100%;
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-right: 5px;
+      box-shadow: 0 0 8px var(--primary);
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      background: rgba(28, 28, 28, 0.95);
+      backdrop-filter: blur(10px);
+      display: none;
+      top: 100%;
+      right: 0;
+      min-width: 220px;
+      z-index: 99;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown-menu li {
+      padding: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .dropdown-menu a {
+      padding: 0.8rem 1.2rem;
+      width: 100%;
+      font-size: 0.95rem;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .user-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .user-actions button {
+      background: var(--gradient);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+    }
+    
+    .user-actions button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(229, 9, 20, 0.5);
+    }
+    
+    /* محتوى الصفحة */
+    .content {
+      padding: 2rem;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    
+    .hero {
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 3rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+      z-index: 1;
+    }
+    
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60%;
+      padding: 3rem;
+      z-index: 2;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--light);
+      line-height: 1.1;
+    }
+    
+    .hero-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: gold;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .hero-btn {
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .play-btn {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.5);
+    }
+    
+    .play-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(229, 9, 20, 0.7);
+    }
+    
+    .info-btn {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      color: var(--light);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .info-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    
+    .section {
+      margin-bottom: 4rem;
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .section-title i {
+      color: var(--primary);
+      background: rgba(229, 9, 20, 0.2);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    
+    .view-all {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .view-all:hover {
+      gap: 0.8rem;
+    }
+    
+    /* شبكة الأفلام */
+    .grid-container {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .movie-card {
+      background: rgba(28, 28, 28, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .movie-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      border-color: rgba(229, 9, 20, 0.3);
+    }
+    
+    .movie-poster {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .movie-info {
+      padding: 1.2rem;
+    }
+    
+    .movie-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+      color: var(--light);
+      height: 50px;
+      overflow: hidden;
+      font-weight: 600;
+    }
+    
+    .movie-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    
+    .movie-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: gold;
+    }
+    
+    .movie-year {
+      background: rgba(229, 9, 20, 0.15);
+      color: var(--primary);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    
+    .favorite-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    
+    .favorite-btn:hover {
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+    
+    .favorite-btn.active {
+      color: var(--primary);
+    }
+    
+    .category-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: rgba(28, 28, 28, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .category-btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .category-btn:hover, .category-btn.active {
+      background: var(--gradient);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+    }
+    
+    .search-container {
+      margin: 2rem 0;
+      display: flex;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+    
+    #searchBox {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      background: rgba(28, 28, 28, 0.7);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      font-size: 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      padding-right: 60px;
+    }
+    
+    #searchBox:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.3);
+    }
+    
+    .search-btn {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--gradient);
+      color: white;
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .search-btn:hover {
+      transform: translateY(-50%) scale(1.05);
+    }
+    
+    /* تذييل الصفحة */
+    footer {
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(229, 9, 20, 0.2);
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-about {
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    
+    .footer-links h3 {
+      color: var(--light);
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      gap: 1rem;
+    }
+    
+    .footer-links a i {
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--gradient);
+      color: white;
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* تحميل */
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+    
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(229, 9, 20, 0.2);
+      border-top: 5px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    /* رسوم متحركة */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* تصميم متجاوب */
+    @media (max-width: 992px) {
+      .navbar {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero {
+        height: 400px;
+      }
+      
+      .hero-content {
+        width: 100%;
+        padding: 2rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        height: 350px;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-meta {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      
+      .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+      
+      .category-tabs {
+        overflow-x: auto;
+        padding: 0.8rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- شريط التنقل -->
   <nav class="navbar">
     <div class="logo">
-      <img src="logo.png" alt="شعار الموقع">
+      <i class="fas fa-film"></i>
+      <h1>سينما بوكس</h1>
     </div>
+    
     <ul class="nav-links">
-      <li><a href="#">المضاف حديثًا <span class="dot"></span></a></li>
-
+      <li><a href="#" class="nav-link active"><span class="dot"></span> الرئيسية</a></li>
+      
       <li class="dropdown">
         <a href="#">الأفلام ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="#">جميع الأفلام</a></li>
-          <li><a href="#">أفلام أجنبي</a></li>
-          <li><a href="#">جوائز أوسكار لهذا العام</a></li>
-          <li><a href="#">أفلام مدبلجة</a></li>
-          <li><a href="#">أفلام أنمي</a></li>
-          <li><a href="#">الأعلى تصويتًا</a></li>
-          <li><a href="#">الأعلى مشاهدة</a></li>
-          <li><a href="#">الأفلام الأعلى تقييمًا IMDb</a></li>
-          <li><a href="#">سلاسل أفلام</a></li>
-          <li><a href="#">أفلام تصدر قريبًا</a></li>
+          <li><a href="#">الأكثر مشاهدة</a></li>
+          <li><a href="#">الأعلى تقييماً</a></li>
+          <li><a href="#">أفلام أكشن</a></li>
+          <li><a href="#">أفلام رعب</a></li>
+          <li><a href="#">أفلام رومانسية</a></li>
+          <li><a href="#">أفلام كوميدية</a></li>
         </ul>
       </li>
-
+      
       <li class="dropdown">
         <a href="#">المسلسلات ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="#">جميع المسلسلات</a></li>
-          <li><a href="#">أحدث الحلقات</a></li>
-          <li><a href="#">الأعلى تقييمًا IMDb</a></li>
-          <li><a href="#">المسلسلات القصيرة</a></li>
+          <li><a href="#">مسلسلات جديدة</a></li>
+          <li><a href="#">مسلسلات عربية</a></li>
+          <li><a href="#">مسلسلات تركية</a></li>
+          <li><a href="#">مسلسلات كورية</a></li>
+          <li><a href="#">المسلسلات الأكثر متابعة</a></li>
         </ul>
       </li>
-
+      
       <li class="dropdown">
         <a href="#">الأنمي ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="#">المضاف حديثًا</a></li>
-          <li><a href="#">جميع الأنمي</a></li>
-          <li><a href="#">أحدث الحلقات</a></li>
-          <li><a href="#">الأنميات الأعلى مشاهدة</a></li>
+          <li><a href="#">أنمي جديد</a></li>
+          <li><a href="#">أنمي أكشن</a></li>
+          <li><a href="#">أنمي رومانسي</a></li>
+          <li><a href="#">أنمي خيال علمي</a></li>
+          <li><a href="#">أفضل الأنمي تقييماً</a></li>
         </ul>
       </li>
     </ul>
+    
+    <div class="user-actions">
+      <button><i class="fas fa-user"></i> تسجيل الدخول</button>
+    </div>
   </nav>
-
-  <main class="content">
-    <h1>مرحبًا بك في موقع الأفلام</h1>
-    <input type="text" id="searchBox" placeholder="ابحث عن فلم أو مسلسل...">
-    <div id="results"></div>
-  </main>
+  
+  <!-- البطل الرئيسي -->
+  <div class="hero">
+    <img src="https://image.tmdb.org/t/p/original/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg" alt="فلم Spider-Man: Across the Spider-Verse">
+    <div class="hero-content">
+      <h1 class="hero-title">Spider-Man: Across the Spider-Verse</h1>
+      <div class="hero-meta">
+        <div class="hero-rating">
+          <i class="fas fa-star"></i>
+          <span>8.7/10</span>
+        </div>
+        <div>2023</div>
+        <div>140 دقيقة</div>
+        <div>أكشن, مغامرة, رسوم متحركة</div>
+      </div>
+      <div class="hero-buttons">
+        <button class="hero-btn play-btn"><i class="fas fa-play"></i> شاهد الآن</button>
+        <button class="hero-btn info-btn"><i class="fas fa-info-circle"></i> تفاصيل</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- محتوى الصفحة -->
+  <div class="content">
+    <div class="search-container">
+      <input type="text" id="searchBox" placeholder="ابحث عن فلم، مسلسل، أنمي...">
+      <button class="search-btn"><i class="fas fa-search"></i></button>
+    </div>
+    
+    <div class="category-tabs">
+      <button class="category-btn active">الأفلام</button>
+      <button class="category-btn">المسلسلات</button>
+      <button class="category-btn">الأنمي</button>
+      <button class="category-btn">سلاسل الأفلام</button>
+      <button class="category-btn">الأكثر مشاهدة</button>
+    </div>
+    
+    <!-- قسم الأفلام -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-film"></i>
+          الأفلام الشعبية
+        </h2>
+        <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+      </div>
+      
+      <div class="grid-container" id="movies-container">
+        <!-- سيتم ملؤها بواسطة الجافاسكريبت -->
+      </div>
+    </div>
+    
+    <!-- قسم المسلسلات -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-tv"></i>
+          المسلسلات الحصرية
+        </h2>
+        <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+      </div>
+      
+      <div class="grid-container" id="series-container">
+        <!-- سيتم ملؤها بواسطة الجافاسكريبت -->
+      </div>
+    </div>
+    
+    <!-- قسم الأنمي -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-dragon"></i>
+          أفضل الأنمي
+        </h2>
+        <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+      </div>
+      
+      <div class="grid-container" id="anime-container">
+        <!-- سيتم ملؤها بواسطة الجافاسكريبت -->
+      </div>
+    </div>
+    
+    <!-- قسم سلاسل الأفلام -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-clone"></i>
+          سلاسل الأفلام
+        </h2>
+        <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+      </div>
+      
+      <div class="grid-container" id="collections-container">
+        <!-- سيتم ملؤها بواسطة الجافاسكريبت -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- تذييل الصفحة -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-info">
+        <div class="footer-logo">سينما بوكس</div>
+        <p class="footer-about">
+          موقع سينما بوكس هو وجهتك الأولى لمشاهدة أحدث الأفلام والمسلسلات والأنمي 
+          بدقة عالية وترجمة متقنة. نقدم تجربة مشاهدة فريدة مع تحديث مستمر للمحتوى.
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h3>روابط سريعة</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-angle-left"></i> الرئيسية</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> الأفلام</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> المسلسلات</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> الأنمي</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> سلاسل الأفلام</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> اتصل بنا</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h3>الفئات</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-angle-left"></i> أكشن</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> مغامرة</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> كوميديا</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> دراما</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> رعب</a></li>
+          <li><a href="#"><i class="fas fa-angle-left"></i> خيال علمي</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      © 2023 سينما بوكس. جميع الحقوق محفوظة. تم التطوير بواسطة فريق سينما بوكس.
+    </div>
+  </footer>
+  
+  <script>
+    // مفتاح API لـ TMDb
+    const apiKey = '6b2dec73b6697866a50cdaef60ccffcb';
+    
+    // عناصر DOM
+    const moviesContainer = document.getElementById('movies-container');
+    const seriesContainer = document.getElementById('series-container');
+    const animeContainer = document.getElementById('anime-container');
+    const collectionsContainer = document.getElementById('collections-container');
+    
+    // روابط API
+    const endpoints = {
+      popularMovies: `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=ar-SA&page=1`,
+      topRatedMovies: `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=ar-SA&page=1`,
+      popularSeries: `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=ar-SA&page=1`,
+      topRatedSeries: `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=ar-SA&page=1`,
+      anime: `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&language=ar-SA&with_genres=16&sort_by=popularity.desc&page=1`,
+      collections: `https://api.themoviedb.org/3/collection/popular?api_key=${apiKey}&language=ar-SA&page=1`
+    };
+    
+    // دالة لجلب البيانات وعرضها
+    async function fetchData(url, container, type = 'movie') {
+      try {
+        container.innerHTML = `
+          <div class="loader">
+            <div class="loader-spinner"></div>
+          </div>
+        `;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        container.innerHTML = '';
+        
+        data.results.slice(0, 10).forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'movie-card';
+          
+          // معالجة الأنمي بشكل مختلف
+          if (type === 'anime') {
+            card.innerHTML = `
+              <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.name}" class="movie-poster">
+              <div class="movie-info">
+                <h3 class="movie-title">${item.name}</h3>
+                <div class="movie-meta">
+                  <div class="movie-rating">
+                    <i class="fas fa-star"></i> ${item.vote_average.toFixed(1)}
+                  </div>
+                  <div class="movie-year">${item.first_air_date ? item.first_air_date.substring(0, 4) : 'N/A'}</div>
+                </div>
+              </div>
+              <button class="favorite-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            `;
+          } 
+          // معالجة السلاسل بشكل مختلف
+          else if (type === 'collection') {
+            card.innerHTML = `
+              <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.name}" class="movie-poster">
+              <div class="movie-info">
+                <h3 class="movie-title">${item.name}</h3>
+                <div class="movie-meta">
+                  <div class="movie-rating">
+                    <i class="fas fa-film"></i> ${item.parts ? item.parts.length : 0} أفلام
+                  </div>
+                </div>
+              </div>
+              <button class="favorite-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            `;
+          } 
+          // معالجة المسلسلات
+          else if (type === 'tv') {
+            card.innerHTML = `
+              <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.name}" class="movie-poster">
+              <div class="movie-info">
+                <h3 class="movie-title">${item.name}</h3>
+                <div class="movie-meta">
+                  <div class="movie-rating">
+                    <i class="fas fa-star"></i> ${item.vote_average.toFixed(1)}
+                  </div>
+                  <div class="movie-year">${item.first_air_date ? item.first_air_date.substring(0, 4) : 'N/A'}</div>
+                </div>
+              </div>
+              <button class="favorite-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            `;
+          } 
+          // معالجة الأفلام
+          else {
+            card.innerHTML = `
+              <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title}" class="movie-poster">
+              <div class="movie-info">
+                <h3 class="movie-title">${item.title}</h3>
+                <div class="movie-meta">
+                  <div class="movie-rating">
+                    <i class="fas fa-star"></i> ${item.vote_average.toFixed(1)}
+                  </div>
+                  <div class="movie-year">${item.release_date ? item.release_date.substring(0, 4) : 'N/A'}</div>
+                </div>
+              </div>
+              <button class="favorite-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            `;
+          }
+          
+          // حدث النقر على زر المفضلة
+          const favBtn = card.querySelector('.favorite-btn');
+          favBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (this.classList.contains('active')) {
+              icon.classList.remove('far');
+              icon.classList.add('fas');
+            } else {
+              icon.classList.remove('fas');
+              icon.classList.add('far');
+            }
+          });
+          
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        container.innerHTML = `<p class="error">حدث خطأ أثناء جلب البيانات. الرجاء المحاولة لاحقاً.</p>`;
+      }
+    }
+    
+    // جلب البيانات عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      fetchData(endpoints.popularMovies, moviesContainer, 'movie');
+      fetchData(endpoints.popularSeries, seriesContainer, 'tv');
+      fetchData(endpoints.anime, animeContainer, 'anime');
+      fetchData(endpoints.collections, collectionsContainer, 'collection');
+      
+      // أحداث أزرار التبويب
+      const categoryBtns = document.querySelectorAll('.category-btn');
+      categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          categoryBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // يمكن إضافة وظائف للتبديل بين الأقسام هنا
+        });
+      });
+      
+      // حدث البحث
+      const searchBtn = document.querySelector('.search-btn');
+      const searchBox = document.getElementById('searchBox');
+      
+      searchBtn.addEventListener('click', function() {
+        const query = searchBox.value.trim();
+        if (query) {
+          alert(`سيتم البحث عن: ${query}`);
+          // يمكن تنفيذ وظيفة البحث هنا
+        }
+      });
+      
+      searchBox.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const query = searchBox.value.trim();
+          if (query) {
+            alert(`سيتم البحث عن: ${query}`);
+            // يمكن تنفيذ وظيفة البحث هنا
+          }
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
